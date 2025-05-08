@@ -1,0 +1,48 @@
+# Git
+.git
+.gitignore
+
+# .NET build output
+src/**/bin
+src/**/obj
+
+# Tests
+tests
+
+# Frontend dev artefacts
+frontend/cadastro-rommanel-frontend/node_modules
+frontend/cadastro-rommanel-frontend/dist
+
+# Outros arquivos/carpetas que não precisam ir pro container
+.vscode
+*.md
+**/.classpath
+**/.dockerignore
+**/.env
+**/.git
+**/.gitignore
+**/.project
+**/.settings
+**/.toolstarget
+**/.vs
+**/.vscode
+**/*.*proj.user
+**/*.dbmdl
+**/*.jfm
+**/azds.yaml
+**/bin
+**/charts
+**/docker-compose*
+**/Dockerfile*
+**/node_modules
+**/npm-debug.log
+**/obj
+**/secrets.dev.yaml
+**/values.dev.yaml
+LICENSE
+README.md
+!**/.gitignore
+!.git/HEAD
+!.git/config
+!.git/packed-refs
+!.git/refs/heads/**

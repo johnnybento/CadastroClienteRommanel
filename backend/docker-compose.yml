@@ -1,0 +1,45 @@
+
+services:
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: cadastro-rommanel-db
+    environment:
+      - SA_PASSWORD=Pass@word1
+      - ACCEPT_EULA=Y
+    ports:
+      - "1433:1433"
+    healthcheck:
+      test: ["CMD", "bash", "-c", "echo 'SELECT 1' | /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P Pass@word1"]
+      interval: 10s
+      retries: 5
+    volumes:
+      - sqlvolume:/var/opt/mssql
+
+  api:
+    build:
+      context: .
+      dockerfile: src\Adapters\Drivers\WebApi\Dockerfile
+    container_name: cadastro-rommanel-api
+    environment:
+      - ConnectionStrings__Default=Server=db;Database=CadastroRommanel;User Id=sa;Password=Pass@word1;Encrypt=False;TrustServerCertificate=True;
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+    ports:
+      - "5000:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: .
+      dockerfile: ../frontend/cadastro-rommanel-frontend/Dockerfile"
+    container_name: cadastro-rommanel-frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - api
+
+volumes:
+  sqlvolume:

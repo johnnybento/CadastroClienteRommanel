@@ -1,0 +1,12 @@
+# .NET
+**/bin/
+**/obj/
+**/*.user
+**/*.vs/
+# VS
+.vs/
+# Node
+frontend/node_modules/
+frontend/dist/
+# Docker
+**/docker-compose.override.yml

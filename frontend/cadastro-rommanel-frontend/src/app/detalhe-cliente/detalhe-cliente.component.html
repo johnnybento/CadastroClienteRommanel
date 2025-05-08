@@ -1,0 +1,45 @@
+<div class="max-w-xl mx-auto p-6">
+  <button (click)="voltar()" class="mb-4 text-blue-600 hover:underline">
+    ← Voltar
+  </button>
+
+  <div *ngIf="loading" class="text-center py-10">
+    <span class="animate-pulse">Carregando informações...</span>
+  </div>
+
+  <div *ngIf="errorMsg" class="text-red-600 text-center py-10">
+    {{ errorMsg }}
+  </div>
+
+  <div *ngIf="cliente" class="bg-white rounded-lg shadow p-6 space-y-4">
+    <h2 class="text-2xl font-bold">Detalhes do Cliente</h2>
+    <div><strong>ID:</strong> {{ cliente.id }}</div>
+    <div><strong>CPF/CNPJ:</strong> {{ cliente.cpfCnpj }}</div>
+    <div><strong>E-mail:</strong> {{ cliente.email }}</div>
+    <div><strong>Telefone:</strong> {{ cliente.telefone }}</div>
+
+    <div class="space-y-1">
+      <strong>Endereço:</strong>
+      <div>{{ cliente.logradouro }}, {{ cliente.numero }}</div>
+      <div>
+        {{ cliente.bairro }} – {{ cliente.cidade }}/{{ cliente.estado }}
+      </div>
+      <div>CEP {{ cliente.cep }}</div>
+    </div>
+
+    <div><strong>Tipo:</strong> {{ cliente.tipo }}</div>
+
+    <div *ngIf="cliente.tipo === 'PessoaFisica'">
+      <strong>Data de Nascimento:</strong>
+      {{ cliente.dataNascimento | date : 'dd/MM/yyyy' }}
+    </div>
+    <div *ngIf="cliente.tipo === 'PessoaJuridica'">
+      <strong>IE:</strong> {{ cliente.ie }}
+    </div>
+
+    <div>
+      <strong>Data de Registro:</strong>
+      {{ cliente.dataRegistro | date : 'dd/MM/yyyy HH:mm' }}
+    </div>
+  </div>
+</div>

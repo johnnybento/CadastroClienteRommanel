@@ -1,0 +1,232 @@
+<form
+  class="max-w-xl mx-auto p-6 bg-white rounded-lg shadow"
+  [formGroup]="form"
+  (ngSubmit)="submit()"
+>
+  <!-- CPF/CNPJ -->
+  <div class="mb-4">
+    <label class="block font-semibold mb-1">CPF/CNPJ</label>
+    <input
+      formControlName="cpfCnpj"
+      class="w-full border rounded px-3 py-2 focus:ring"
+      [class.border-red-500]="
+        form.get('cpfCnpj')?.touched && form.get('cpfCnpj')?.invalid
+      "
+    />
+    <p
+      *ngIf="form.get('cpfCnpj')?.touched && form.get('cpfCnpj')?.invalid"
+      class="text-red-600 text-sm mt-1"
+    >
+      {{ form.get('cpfCnpj')?.errors?.['server']
+         || form.get('cpfCnpj')?.errors?.['cpfCnpj']
+         || 'CPF/CNPJ é obrigatório' }}
+    </p>
+  </div>
+
+  <!-- E-mail -->
+  <div class="mb-4">
+    <label class="block font-semibold mb-1">E-mail</label>
+    <input
+      formControlName="email"
+      type="email"
+      class="w-full border rounded px-3 py-2 focus:ring"
+      [class.border-red-500]="
+        form.get('email')?.touched && form.get('email')?.invalid
+      "
+    />
+    <p
+      *ngIf="form.get('email')?.touched && form.get('email')?.invalid"
+      class="text-red-600 text-sm mt-1"
+    >
+      {{ form.get('email')?.errors?.['required']
+         ? 'E-mail é obrigatório'
+         : 'Formato de e-mail inválido' }}
+    </p>
+  </div>
+
+  <!-- Telefone -->
+  <div class="mb-4">
+    <label class="block font-semibold mb-1">Telefone</label>
+    <input
+      formControlName="telefone"
+      class="w-full border rounded px-3 py-2 focus:ring"
+      [class.border-red-500]="
+        form.get('telefone')?.touched && form.get('telefone')?.invalid
+      "
+    />
+    <p
+      *ngIf="form.get('telefone')?.touched && form.get('telefone')?.invalid"
+      class="text-red-600 text-sm mt-1"
+    >
+      Telefone inválido ou obrigatório
+    </p>
+  </div>
+
+  <!-- Endereço: CEP, Estado, Logradouro, Número, Bairro, Cidade -->
+  <div class="grid grid-cols-2 gap-4">
+    <div class="mb-4">
+      <label class="block font-semibold mb-1">CEP</label>
+      <input
+        formControlName="cep"
+        class="w-full border rounded px-3 py-2 focus:ring"
+        [class.border-red-500]="
+          form.get('cep')?.touched && form.get('cep')?.invalid
+        "
+      />
+      <p
+        *ngIf="form.get('cep')?.touched && form.get('cep')?.invalid"
+        class="text-red-600 text-sm mt-1"
+      >
+        CEP inválido ou obrigatório
+      </p>
+    </div>
+    <div class="mb-4">
+      <label class="block font-semibold mb-1">Estado (UF)</label>
+      <input
+        formControlName="estado"
+        maxlength="2"
+        class="w-full border rounded px-3 py-2 focus:ring"
+        [class.border-red-500]="
+          form.get('estado')?.touched && form.get('estado')?.invalid
+        "
+      />
+      <p
+        *ngIf="form.get('estado')?.touched && form.get('estado')?.invalid"
+        class="text-red-600 text-sm mt-1"
+      >
+        Sigla de Estado inválida ou obrigatória
+      </p>
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <label class="block font-semibold mb-1">Logradouro</label>
+    <input
+      formControlName="logradouro"
+      class="w-full border rounded px-3 py-2 focus:ring"
+      [class.border-red-500]="
+        form.get('logradouro')?.touched && form.get('logradouro')?.invalid
+      "
+    />
+    <p
+      *ngIf="form.get('logradouro')?.touched && form.get('logradouro')?.invalid"
+      class="text-red-600 text-sm mt-1"
+    >
+      Obrigatório
+    </p>
+  </div>
+
+  <div class="grid grid-cols-2 gap-4">
+    <div class="mb-4">
+      <label class="block font-semibold mb-1">Número</label>
+      <input
+        formControlName="numero"
+        class="w-full border rounded px-3 py-2 focus:ring"
+        [class.border-red-500]="
+          form.get('numero')?.touched && form.get('numero')?.invalid
+        "
+      />
+      <p
+        *ngIf="form.get('numero')?.touched && form.get('numero')?.invalid"
+        class="text-red-600 text-sm mt-1"
+      >
+        Obrigatório
+      </p>
+    </div>
+    <div class="mb-4">
+      <label class="block font-semibold mb-1">Bairro</label>
+      <input
+        formControlName="bairro"
+        class="w-full border rounded px-3 py-2 focus:ring"
+        [class.border-red-500]="
+          form.get('bairro')?.touched && form.get('bairro')?.invalid
+        "
+      />
+      <p
+        *ngIf="form.get('bairro')?.touched && form.get('bairro')?.invalid"
+        class="text-red-600 text-sm mt-1"
+      >
+        Obrigatório
+      </p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-2 gap-4">
+    <div class="mb-4">
+      <label class="block font-semibold mb-1">Cidade</label>
+      <input
+        formControlName="cidade"
+        class="w-full border rounded px-3 py-2 focus:ring"
+        [class.border-red-500]="
+          form.get('cidade')?.touched && form.get('cidade')?.invalid
+        "
+      />
+      <p
+        *ngIf="form.get('cidade')?.touched && form.get('cidade')?.invalid"
+        class="text-red-600 text-sm mt-1"
+      >
+        Obrigatório
+      </p>
+    </div>
+    <div class="mb-4">
+      <label class="block font-semibold mb-1">Tipo</label>
+      <select
+        formControlName="tipo"
+        class="w-full border rounded px-3 py-2 focus:ring"
+      >
+        <option value="PessoaFisica">Pessoa Física</option>
+        <option value="PessoaJuridica">Pessoa Jurídica</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- IE para PJ -->
+  <div *ngIf="form.get('tipo')?.value === 'PessoaJuridica'" class="mb-4">
+    <label class="block font-semibold mb-1">IE</label>
+    <input
+      formControlName="ie"
+      class="w-full border rounded px-3 py-2 focus:ring"
+      [class.border-red-500]="
+        form.get('ie')?.touched && form.get('ie')?.invalid
+      "
+    />
+    <p
+      *ngIf="form.get('ie')?.touched && form.get('ie')?.hasError('required')"
+      class="text-red-600 text-sm mt-1"
+    >
+      IE é obrigatório para Pessoa Jurídica
+    </p>
+  </div>
+
+  <!-- DataNascimento para PF -->
+  <div *ngIf="form.get('tipo')?.value === 'PessoaFisica'" class="mb-4">
+    <label class="block font-semibold mb-1">Data de Nascimento</label>
+    <input
+      type="date"
+      formControlName="dataNascimento"
+      class="w-full border rounded px-3 py-2 focus:ring"
+      [class.border-red-500]="
+        form.get('dataNascimento')?.touched &&
+        form.get('dataNascimento')?.invalid
+      "
+    />
+    <p
+      *ngIf="
+        form.get('dataNascimento')?.touched &&
+        form.get('dataNascimento')?.hasError('required')
+      "
+      class="text-red-600 text-sm mt-1"
+    >
+      Data de Nascimento é obrigatória para Pessoa Física
+    </p>
+  </div>
+
+  <!-- Botão -->
+  <button
+    type="submit"
+    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded disabled:opacity-50"
+    [disabled]="form.invalid || submitting"
+  >
+    {{ submitting ? 'Cadastrando...' : 'Cadastrar' }}
+  </button>
+</form>
